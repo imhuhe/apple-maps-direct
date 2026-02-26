@@ -1,40 +1,19 @@
-#!name=Apple Maps CN Direct (macOS)
-#!desc=Force Apple Maps traffic to DIRECT for better performance in mainland China
-#!author=ChatGPT
-#!system=macOS
+#!name=Apple Maps China Direct
+#!desc=强制 macOS Apple Maps 使用高德数据插件及国内直连，优化地图加载速度。
+#!category=Routing
 
 [Rule]
-
-# Apple Maps Core Services
+# Apple Maps 核心域名
+DOMAIN,gspe1-ssl.ls.apple.com,DIRECT
+DOMAIN,gspe19-2-ssl.ls.apple.com,DIRECT
+DOMAIN,gspe19-ssl.ls.apple.com,DIRECT
+DOMAIN,gspe21-ssl.ls.apple.com,DIRECT
+DOMAIN,gspe35-ssl.ls.apple.com,DIRECT
 DOMAIN-SUFFIX,ls.apple.com,DIRECT
-DOMAIN-SUFFIX,gspe1-ssl.ls.apple.com,DIRECT
-DOMAIN-SUFFIX,gspe35-ssl.ls.apple.com,DIRECT
-DOMAIN-SUFFIX,gspe19-ssl.ls.apple.com,DIRECT
-DOMAIN-SUFFIX,gspe12-ssl.ls.apple.com,DIRECT
-DOMAIN-SUFFIX,gspe79-ssl.ls.apple.com,DIRECT
 
-# Apple Maps Tiles and Resources
-DOMAIN-SUFFIX,cdn.apple-mapkit.com,DIRECT
+# 静态资源与平铺地图数据
 DOMAIN-SUFFIX,apple-mapkit.com,DIRECT
-DOMAIN-SUFFIX,apple.com,DIRECT
+DOMAIN-SUFFIX,mazu.p08.itunes.apple.com,DIRECT
 
-# Location Services
-DOMAIN-SUFFIX,locationd.apple.com,DIRECT
-
-# Apple Geo Services
-DOMAIN-SUFFIX,geo.apple.com,DIRECT
-DOMAIN-SUFFIX,geo2.apple.com,DIRECT
-
-# Apple CDN China (operated by GCBD / ChinaNet)
-DOMAIN-SUFFIX,apple.cn,DIRECT
-DOMAIN-SUFFIX,icloud.com,DIRECT
-DOMAIN-SUFFIX,icloud-content.com,DIRECT
-
-# Apple Maps China partner (AutoNavi / Gaode)
-DOMAIN-SUFFIX,amap.com,DIRECT
-DOMAIN-SUFFIX,autonavi.com,DIRECT
-
-[Host]
-
-# Force China Geo endpoint resolution
-gspe1-ssl.ls.apple.com = gspe1-cn-ssl.ls.apple.com
+# 逻辑校验：Apple Maps 在中国境内默认使用高德（Autonavi）数据
+DOMAIN-KEYWORD,autonavi,DIRECT
